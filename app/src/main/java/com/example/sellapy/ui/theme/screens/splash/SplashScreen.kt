@@ -1,5 +1,6 @@
 package com.example.sellapy.ui.theme.screens.splash
 
+import android.annotation.SuppressLint
 import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +18,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,12 +35,21 @@ import com.example.sellapy.navigation.ROUT_DASHBOARD
 import com.example.sellapy.navigation.ROUT_DETAIL
 import com.example.sellapy.ui.theme.Purple80
 import com.example.sellapy.ui.theme.Yellow
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SplashScreen(navController: NavController){
 
     Column(modifier = Modifier.fillMaxSize()) {
+
+        val coroutine = rememberCoroutineScope()
+        coroutine.launch {
+            delay(3000)
+            navController.navigate(ROUT_DASHBOARD)
+        }
 
         Card(
             modifier = Modifier
@@ -90,7 +101,9 @@ fun SplashScreen(navController: NavController){
         Button(
             onClick = {  },
             colors = ButtonDefaults.buttonColors(Yellow),
-            modifier = Modifier.fillMaxWidth().padding(30.dp,30.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(30.dp, 30.dp)
         ) {
             Text(text = "LET'S BEGIN")
         }

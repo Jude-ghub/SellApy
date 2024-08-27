@@ -33,10 +33,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sellapy.R
 import com.example.sellapy.navigation.ROUT_DETAIL
 import com.example.sellapy.navigation.ROUT_HOME
+import com.example.sellapy.navigation.ROUT_INTENT
 import com.example.sellapy.ui.theme.Brown
 import com.example.sellapy.ui.theme.Purple80
 import com.example.sellapy.ui.theme.PurpleGrey40
 import com.example.sellapy.ui.theme.Yellow
+import androidx.compose.foundation.clickable as clickable1
 
 
 @Composable
@@ -73,7 +75,7 @@ fun DashboardScreen(navController: NavController){
             Card (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(700.dp).clickable {
+                    .height(700.dp).clickable1 {
                         navController.navigate(ROUT_HOME)
                     },
                 shape = RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp),
@@ -199,7 +201,7 @@ fun DashboardScreen(navController: NavController){
                     Card (modifier = Modifier
                         .width(160.dp)
                         .height(180.dp)
-                        .clickable { navController.navigate(ROUT_DETAIL) }
+                        .clickable1 { navController.navigate(ROUT_DETAIL) }
                     ){
                         Spacer(modifier = Modifier.height(30.dp))
 
@@ -228,6 +230,7 @@ fun DashboardScreen(navController: NavController){
                     Card (modifier = Modifier
                         .width(160.dp)
                         .height(180.dp)
+                        .clickable { navController.navigate(ROUT_INTENT) }
                     ){
                         Spacer(modifier = Modifier.height(30.dp))
 
@@ -235,12 +238,12 @@ fun DashboardScreen(navController: NavController){
                             modifier = Modifier.fillMaxWidth(),
                             contentAlignment = Alignment.Center){
                             Image(
-                                painter = painterResource(id = R.drawable.login) ,
+                                painter = painterResource(id = R.drawable.intent) ,
                                 contentDescription = "" ,
                                 modifier = Modifier.size(100.dp))
                         }
                         Text(
-                            text = "Login",
+                            text = "Intent",
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,

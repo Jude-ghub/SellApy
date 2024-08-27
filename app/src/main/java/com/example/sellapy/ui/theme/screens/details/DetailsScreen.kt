@@ -144,7 +144,6 @@ fun DetailsScreen(navController: NavController){
         Spacer(modifier = Modifier.height(10.dp))
 
         //Row1
-
         Row (
             modifier = Modifier.horizontalScroll(rememberScrollState())
         ){
