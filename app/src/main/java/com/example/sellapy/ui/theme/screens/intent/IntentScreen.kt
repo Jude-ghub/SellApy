@@ -73,7 +73,6 @@ import androidx.core.net.toUri
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.sellapy.R
-import com.example.sellapy.navigation.ROUT_DETAIL
 import com.example.sellapy.ui.theme.Brown
 import com.example.sellapy.ui.theme.Yellow
 
