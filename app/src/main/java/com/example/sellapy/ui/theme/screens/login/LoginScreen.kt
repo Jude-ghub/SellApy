@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.sellapy.R
+import com.example.sellapy.data.AuthViewModel
 import com.example.sellapy.navigation.ROUT_SIGNUP
 import com.example.sellapy.ui.theme.PurpleGrey80
 import com.example.sellapy.ui.theme.Yellow
@@ -90,6 +92,7 @@ fun LoginScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(10.dp))
 
+        //Password
         OutlinedTextField(
             value = password ,
             onValueChange = { password = it},
@@ -104,9 +107,14 @@ fun LoginScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(10.dp))
 
+        val context = LocalContext.current
+        val authViewModel = AuthViewModel(navController, context)
+
+        //Row
         Row {
+            // User Button
             Button(
-                onClick = { },
+                onClick = { authViewModel.login(email, password) },
                 colors = ButtonDefaults.buttonColors(PurpleGrey80)
             ) {
                 Text(text = "Login as User")
@@ -114,13 +122,15 @@ fun LoginScreen(navController: NavController){
 
             Spacer(modifier = Modifier.width(30.dp))
 
+            //Admin Button
             Button(
-                onClick = { },
+                onClick = { authViewModel.adminlogin(email, password) },
                 colors = ButtonDefaults.buttonColors(PurpleGrey80)
             ) {
                 Text(text = "Login as an Admin")
             }
         }
+        //End of row
 
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -152,3 +162,19 @@ fun LoginScreen(navController: NavController){
 fun LoginScreenPreview(){
     LoginScreen(rememberNavController())
 }
+
+// login into firebase and create account
+// connect to your project and authenticate
+// in your project com.example create two packages data and models
+// inside models create a kotlin class called User
+// use the codes from the User
+// create another kotlin class inside data that will carry functions
+// go to sign up button for login
+// stand on onclick..
+// on top of your button paste..
+//val context = LocalContext.current
+//val authViewModel = AuthViewModel(navController, context)
+// inside onclick paste..
+// { authViewModel.signup(name, email, password,confpassword) },
+// do the same for all buttons
+// in your login file.. login as a user.. do the same process

@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.sellapy.R
+import com.example.sellapy.navigation.ROUT_DASHBOARD
 
 import com.example.sellapy.ui.theme.Purple80
 import com.example.sellapy.ui.theme.Yellow

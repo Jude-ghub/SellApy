@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -30,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
@@ -40,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.sellapy.R
+import com.example.sellapy.data.AuthViewModel
 import com.example.sellapy.navigation.ROUT_LOGIN
 import com.example.sellapy.ui.theme.PurpleGrey80
 import com.example.sellapy.ui.theme.Yellow
@@ -50,10 +54,15 @@ fun SignupScreen(navController: NavController){
 
     Column (modifier = Modifier
         .fillMaxSize()
-        .paint(painterResource(id = R.drawable.bak),
-            contentScale = ContentScale.FillBounds),
+        .verticalScroll(rememberScrollState())
+        .paint(
+            painterResource(id = R.drawable.bak),
+            contentScale = ContentScale.FillBounds
+        ),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+        Spacer(modifier = Modifier.height(20.dp))
+
         Image(
             painter = painterResource(id = R.drawable.img) ,
             contentDescription = "product",
@@ -137,8 +146,11 @@ fun SignupScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(10.dp))
 
+        val context = LocalContext.current
+        val authViewModel = AuthViewModel(navController, context)
+
         Button(
-            onClick = { },
+            onClick = { authViewModel.signup(email, password, confpassword) },
             colors = ButtonDefaults.buttonColors(PurpleGrey80)
         ) {
             Text(text = "Create an account")
@@ -146,13 +158,18 @@ fun SignupScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(
-            text = "Already have an account, Log in",
-            fontSize = 20.sp,
-            fontFamily = FontFamily.SansSerif,
-            color = Yellow,
-            modifier = Modifier.clickable { navController.navigate(ROUT_LOGIN) }
-        )
+        Button(onClick = { navController.navigate(ROUT_LOGIN) }) {
+            Text(
+                text = "Already have an account, Log in",
+                fontSize = 20.sp,
+                fontFamily = FontFamily.SansSerif,
+                color = Yellow,
+                modifier = Modifier.clickable { navController.navigate(ROUT_LOGIN) }
+            )
+
+        }
+
+
 
 
 
