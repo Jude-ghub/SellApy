@@ -150,7 +150,7 @@ fun SignupScreen(navController: NavController){
         val authViewModel = AuthViewModel(navController, context)
 
         Button(
-            onClick = { authViewModel.signup(email, password, confpassword) },
+            onClick = { authViewModel.signup(name,email,password,confpassword) },
             colors = ButtonDefaults.buttonColors(PurpleGrey80)
         ) {
             Text(text = "Create an account")

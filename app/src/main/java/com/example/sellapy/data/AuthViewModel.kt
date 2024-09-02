@@ -4,8 +4,8 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.widget.Toast
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.example.sellapy.models.User
+import com.example.sellapy.navigation.ADD_PRODUCTS_URL
 import com.example.sellapy.navigation.ROUT_DASHBOARD
 import com.example.sellapy.navigation.ROUT_HOME
 import com.example.sellapy.navigation.ROUT_INTENT
@@ -14,7 +14,7 @@ import com.example.sellapy.navigation.ROUT_SIGNUP
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class AuthViewModel(navController: NavController, var context: Context) {
+class AuthViewModel(var navController: NavController, var context: Context) {
 
     val mAuth: FirebaseAuth
     val progress: ProgressDialog
@@ -36,7 +36,7 @@ class AuthViewModel(navController: NavController, var context: Context) {
         }else{
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                 if (it.isSuccessful){
-                    val userdata= com.example.sellapy.models.User(
+                    val userdata= User(
                         name,
                         email,
                         password,
@@ -90,11 +90,11 @@ class AuthViewModel(navController: NavController, var context: Context) {
             Toast.makeText(context,"Please email and password cannot be blank", Toast.LENGTH_LONG).show()
         }
 
-        else if (email == "sheilaokwisa18@gmail.com" && password == "123456"){
+        else if (email == "judengigi@gmail.com" && password == "123456"){
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful ){
                     Toast.makeText(this.context, "Success", Toast.LENGTH_SHORT).show()
-                    navController.navigate(ROUT_INTENT)
+                    navController.navigate(ADD_PRODUCTS_URL)
                 }else{
                     Toast.makeText(this.context, "Error", Toast.LENGTH_SHORT).show()
                 }
@@ -114,6 +114,5 @@ class AuthViewModel(navController: NavController, var context: Context) {
     }
 
     fun isLoggedIn(): Boolean = mAuth.currentUser != null
-
 
 }
