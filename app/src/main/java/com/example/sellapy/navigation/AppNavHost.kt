@@ -17,6 +17,7 @@ import com.example.sellapy.ui.theme.screens.products.AddProductsScreen
 import com.example.sellapy.ui.theme.screens.products.ViewProductsScreen
 import com.example.sellapy.ui.theme.screens.signup.SignupScreen
 import com.example.sellapy.ui.theme.screens.splash.SplashScreen
+import com.example.sellapy.ui.theme.screens.students.AddStudentsScreen
 
 
 @Composable
@@ -73,6 +74,12 @@ fun AppNavHost(
         }
         composable(VIEW_PRODUCTS_URL) {
             ViewProductsScreen(navController = navController)
+        }
+        composable(ADD_STUDENT_URL) {
+            AddStudentsScreen(navController = navController)
+        }
+        composable(VIEW_STUDENT_URL) {
+            AddStudentsScreen(navController = navController)
         }
 
 
